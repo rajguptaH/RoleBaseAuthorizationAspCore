@@ -52,3 +52,13 @@ public IActionResult Login(string username,string password)
 ```
 - now you have to use role base authorization for a method or a controller so you can simply provide a parameter called role to the Authorize attribute Like this [Authorize(Role = "Admin")]
 ```c#
+[Authorize(Roles ="Admin")] 
+public IActionResult Privacy()
+{
+  return View();
+}
+```
+- Now This Method Will only accessible to The User Whose Role is Admin That It 
+## Thanks
+- Visit To The Repository Where Role Based Authorization Has been implemented 
+- [RoleBaseAuthorization](https://github.com/rajguptaH/RoleBaseAuthorizationAspCore)
