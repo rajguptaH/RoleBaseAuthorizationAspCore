@@ -25,3 +25,30 @@ public IActionResult Index()
    return View();
 }
 ```
+- Then You Have Login Users Using based on their credentials and after that you have use a method SignInAsyncs Login User With given identity claim and roles after that you can compare roles of user when you are authorizing method or controllers like see next point 
+```c#
+[HttpPost]
+public IActionResult Login(string username,string password)
+  {
+            if(username=="admin" && password == "dotnet")
+            {
+                var identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Role, "Admin"), new        
+                Claim(ClaimTypes.Role, "SU") }, CookieAuthenticationDefaults.AuthenticationScheme);
+                var principle = new ClaimsPrincipal(identity);
+                var login = HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principle);
+                return RedirectToAction("Index", "Home");
+            }
+            
+            if(username=="user" && password == "user")
+            {
+                var identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Role, "user") },   
+                CookieAuthenticationDefaults.AuthenticationScheme);
+                var principle = new ClaimsPrincipal(identity);
+                var login = HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principle);
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
+  }
+```
+- now you have to use role base authorization for a method or a controller so you can simply provide a parameter called role to the Authorize attribute Like this [Authorize(Role = "Admin")]
+```c#
