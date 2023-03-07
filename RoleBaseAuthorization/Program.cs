@@ -1,7 +1,4 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,20 +15,6 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-
-//builder.Services.AddAuthorization(config =>
-//{
-//    var userAuthPolicyBuilder = new AuthorizationPolicyBuilder();
-//    config.DefaultPolicy = userAuthPolicyBuilder
-//                        .RequireAuthenticatedUser()
-//                        .RequireClaim(ClaimTypes.DateOfBirth)
-//                        .Build();
-//});
-//builder.Services.AddAuthorization(options =>
-//{
-//    options.AddPolicy("RequireAdministratorRole",
-//         policy => policy.RequireRole("Administrator"));
-//});
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
